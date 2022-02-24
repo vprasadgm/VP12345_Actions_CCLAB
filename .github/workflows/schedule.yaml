@@ -1,0 +1,28 @@
+name: hello-example
+
+on: 
+  pull_request:
+    branches:
+      - '*'
+
+  schedule:
+    - cron: '*/15 * * * *'
+
+
+jobs:
+
+  schedule-job:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: Run the python program
+        run: python hello.py
+
+      - name: Random echo
+        run: echo "this is the run being scheduled" 

@@ -1,0 +1,43 @@
+name: hello-example
+
+on: push
+
+jobs:
+
+  first-job:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: Say Hello World!
+        run: echo "Hello World!"
+
+      - name: Multiline command
+        run: |
+          echo "You can use the pipe(denoted by |) to"
+          echo "run multiple commands at once" &&
+          echo "Like this. The && in the previous line"
+          echo "is not required"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8 pytest
+
+      - name: Lint with flake8
+        run: |
+          flake8 . 
+
+      - name: Test with pytest
+        run: |
+          pytest
+
+      - name: Run the python program
+        run: python hello.py
+
+

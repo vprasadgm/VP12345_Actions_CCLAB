@@ -1,0 +1,29 @@
+name: Docker
+
+on: push
+
+jobs:
+
+  docker-job:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+        # You could manually build docker images like how you are used to doing locally. 
+        # That is, using docker login and docker tag etc. 
+        #- name: Build the docker image
+        # run: docker build . --file Dockerfile --tag cclab_week_5:$(date +%s) 
+
+        # But you don't have to do so much work
+
+      - uses: mr-smithers-excellent/docker-build-push@v5
+        with:
+          image: taocc/test
+          tags: cclabw5, v1
+          registry: docker.io
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+
