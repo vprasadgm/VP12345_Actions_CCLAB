@@ -6,3 +6,4 @@ def some_func():
 
 
 print(some_func())
+print("Steins:Gate")
